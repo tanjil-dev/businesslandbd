@@ -1,0 +1,37 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block css_block %}
+    <link rel="stylesheet" href="{% static 'css/search_products.css' %}">
+{% endblock %}
+{% block content %}
+
+    <div class="container search-product">
+        <div class="row">
+            {% for product in products %}
+                <div class="col-lg-4">
+                    <img class="thumbnail" src="{{ product.imageURL }}" alt="">
+                    <div class="box-element product">
+                        <h5><strong>{{ product.name }}</strong></h5>
+                        <hr>
+
+                        <button data-product="{{ product.id }}" data-action="add"
+                                class="btn btn-outline-secondary add-btn update-cart">Add to Cart
+                        </button>
+
+                        <a class="btn btn-outline-success" href="{% url 'product_view' product.id %}">View</a>
+                        <h5 style="display: inline-block; float: right">
+                            <strong>Tk {{ product.price|floatformat:2 }}</strong></h5>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    {#    {% for o in results %}#}
+    {#        <ol>#}
+    {#            <li>{{ o.name }}</li>#}
+    {#            <li>{{ o.price }}</li>#}
+    {#            <li>{{ o.description }}</li>#}
+    {#        </ol>#}
+    {#    {% endfor %}#}
+{% endblock content %}

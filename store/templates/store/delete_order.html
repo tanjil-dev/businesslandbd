@@ -1,0 +1,16 @@
+{% extends 'store/main.html' %}
+{% load static %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="carf card-body">
+                <p>Are you sure you want to delete "{{ orderItems }}"?</p>
+                <form action="{% url 'delete_order' orderItems.id %}" method="post">
+                    {% csrf_token %}
+                    <a class="btn btn-warning" href="{% url 'admin_panel' %}">Cancel</a>
+                    <input class="btn btn-danger" type="submit" name="Confirm">
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
